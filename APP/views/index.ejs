@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Probono APP</title>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <div id="container">
+        <div id="logo">
+            PROBONO
+        </div>
+        <div id="login">
+            <div id="advogadoLogin">
+                <label class="tituloLogin">Advogado</label>
+                <form action="/homeAdvogado" method="get" id="logar">
+                    <input type="text" placeholder="Email" value="" id="email" name="email"><br>
+                    <input type="password" id="pass" placeholder="Senha" name="password"><br>
+                    <button type="submit" id="logar" value="Entrar">
+                        Entrar
+                    </button>
+                </form>
+            </div>
+            <div id="clienteLogin">
+                <label class="tituloLogin">Cliente</label>
+                <form action="/homeCliente" method="get" id="logar">
+                    <input type="text" placeholder="CPF" value="" id="cpf" name="cpf"><br>
+                    <input type="password" placeholder="Senha" id="passw" name="password"><br>
+                    <button type="submit" id="logar" value="Entrar">
+                        Entrar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

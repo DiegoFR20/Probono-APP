@@ -1,0 +1,61 @@
+*{
+    margin: 0;
+    padding: 0;
+    background: white;
+}
+
+html{
+    padding: 10px;
+}
+
+#login{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 400px;
+}
+
+.login{
+    height: 200px;
+    width: 400px;
+    margin-top: 10px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    outline: none;
+    margin-bottom: 30px;
+}
+
+input{
+    margin: auto;
+    width: 325px;
+    padding-left: 10px;
+}
+
+textarea{
+    margin: auto;
+    width: 325px;
+}
+
+label{
+    margin: auto;
+}
+
+button{
+    margin: auto;
+    width: 325px;
+}
+
+form input, form button{
+    height: 25px;
+    border: 1px solid #000;
+    color: #000;
+    border-radius: 7px;
+}
+
+button:active{
+    background: rgb(247, 247, 247);
+    outline: none;
+}

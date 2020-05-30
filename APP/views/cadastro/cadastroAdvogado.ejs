@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Probono APP</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="container">
+        <div id="logo">
+            PROBONO
+        </div>
+        <div id="advogadoCadastro">
+            <form action="/api/salvarAdvogado" method="post" id="logar">
+                <input type="text" placeholder="Email" id="email" name="email"><br>
+                <input type="password" id="pass" placeholder="Senha" name="password"><br>
+                <button type="submit" id="cadastrar" value="cadastrar">
+                    Cadastrar
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
