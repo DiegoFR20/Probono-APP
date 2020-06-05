@@ -1,61 +1,178 @@
-*{
-    margin: 0;
-    padding: 0;
-    background: white;
+html{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
 }
 
-html{
-    padding: 10px;
+body{
+    margin: 0;
+}
+
+header{
+    padding-top: 5px;
+    background-color: rgb(243,243,243);
+    border-bottom: 3px solid rgb(235,235,235);
+    margin-bottom: 40px;
+}
+
+#logo{
+    margin-left: 50px;
+    width: fit-content;
+}
+
+#container{
+    display: flex;
+    width: 1000px;
+    margin: auto;
+    justify-content: center;
+    background: rgb(252, 252, 252);
+    border: 2px solid rgb(240, 240, 240);
+    border-radius: 8px;
+    box-shadow: 1px 1px 5px 3px rgb(235, 235, 235);
+}
+
+#cadastrarProcesso, .processos{
+    padding: 20px;
+    background-color: rgb(240, 240, 240);
+    border-radius: 8px;
+}
+
+#cadastro{
+    display: flex;
+    flex-direction: column;
 }
 
 #login{
-    display: flex;
-    flex-direction: column;
-    margin: auto;
+    transform: translateX(-100px);
     width: 400px;
 }
 
 .login{
     height: 200px;
     width: 400px;
-    margin-top: 10px;
+}
+
+#sair{
+    float: right;
+    transform: translate(-100px, -37px);
 }
 
 form{
     display: flex;
     flex-direction: column;
+    align-items: center;
     outline: none;
     margin-bottom: 30px;
 }
 
 input{
-    margin: auto;
+    box-shadow: 1px 1px 5px 3px rgb(235, 235, 235);
+    margin-top: 15px;
     width: 325px;
     padding-left: 10px;
-}
-
-textarea{
-    margin: auto;
-    width: 325px;
-}
-
-label{
-    margin: auto;
-}
-
-button{
-    margin: auto;
-    width: 325px;
-}
-
-form input, form button{
     height: 25px;
     border: 1px solid #000;
     color: #000;
     border-radius: 7px;
 }
 
-button:active{
+input:focus, textarea:focus{
+    background-color: rgb(240, 245, 245);
+    border-radius: 7px;
+    outline: none;
+    border: 1px solid #000;
+    color: #000;
+}
+
+#cadastrarProcesso{
+    border: 1px solid rgb(230, 230, 230);
+    height: 400px;
+    transform: translate(-12%, 17%);
+}
+
+textarea{
+    margin: auto;
+    margin-top: 15px;
+    width: 337px;
+    border-radius: 7px;
+    resize: none;
+    height: 80px;
+}
+
+.btn{
+    height: 50px;
+    box-shadow: 1px 1px 5px 3px rgb(235, 235, 235);
+    background-color: #4b49ac;
+    width: 337px;    
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    margin: 10px;
+}
+
+.btn:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.btn:active{
     background: rgb(247, 247, 247);
     outline: none;
+    color: #000;
+    border: 0.5px solid #000;
+}
+
+.btn:enabled{
+    outline: none;
+}
+
+.btn:active{
+    outline: none;
+}
+
+.btnCadastro{
+    margin-top: 50px;
+    transform: translate(90px, 200px);
+}
+
+a{
+    text-decoration: none;
+}
+
+#btnlista{
+    margin-left: 51.5px;
+}
+
+#processo{
+    transform: translateX(45px);
+}
+
+#processos{
+    margin-top: 20px;
+    overflow: auto;
+    height: 400px;
+    width: 400px;
+}
+
+.processos{
+    padding: 20px;
+    text-align: center;
+    border: 1px solid rgb(230, 230, 230);
+    transform: translateY(-15px);
+}
+
+.processos li{
+    background-color: #fff;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+#lista{
+    padding: 0;
+    margin: 0;
+}
+
+li{    
+    border: 1px solid rgb(230,230,230);
+    list-style: none;
 }

@@ -5,26 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Probono APP</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
+    <header>
+        <h1 id="logo"> PRO BONO </h1>
+    </header>
     <div id="container">
-        <div id="logo">
-            PROBONO
+        <% if(validacao.length > 0 ) { %>
+        <div class="error">
+            <strong>Atenção!</strong>
+            <ul>
+                <%for(var i=0; i < validacao.length > 0; i++){%>
+                <li><%=validacao[i].msg%></li>
+                <% } %>
+            </ul>
         </div>
+        <%}%>
         <div id="login">
             <div id="andamentoCadastro">
-                <form action="/api/salvarAndamento" method="post" id="logar">
+                <h3>CADASTRO DE ANDAMENTO</h3>
+                <form action="/andamento/incluir" method="post">
                     <label for="descAndamento">Descrição do andamento</label>
                     <textarea placeholder="Descrição do Andamento" value="" id="descAndamento" name="descAndamento"> </textarea><br>
-                    <button type="submit" id="cadastrar" value="Cadastrar">
+                    <button class="btn" type="submit" id="cadastrar" value="Cadastrar">
                         Cadastrar
                     </button>
-                </form>
+                </form><br>
+                <button id="cancelar">
+                    Cancelar
+                </button>
             </div>
         </div>
     </div>
 </body>
-
+<script>
+    document.getElementById('cancelar').addEventListener('click', function () {
+        window.location.href = "index";
+    })
+</script>
 </html>

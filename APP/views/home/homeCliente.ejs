@@ -5,20 +5,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Probono APP</title>
-    <link rel="stylesheet" href="css/style.css">
-
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
+    <header>
+        <h1 id="logo"> PRO BONO </h1>
+        <div id="sair">
+            <button class="btn" type="button" id="sair">
+                Sair
+            </button>
+        </div>
+    </header>
     <div id="container">
-        <header>
-            <div id="logo">
-                PROBONO
-            </div>
-            
-        </header>
+        <div id="processo">
+            <button class="btn" id="btnlista">
+                Lista de Processos
+            </button>
+            <div id="processos" class="processos">
 
+            </div>
+        </div>
     </div>
 </body>
+<script>
+    document.getElementById('sair').addEventListener('click', function () {
+        window.location.href = "sair";
+    });
+</script>
+<script>
+    var xhttp = new XMLHttpRequest();
+    document.getElementById('btnlista').addEventListener('click', function () {
+        var divLista = document.createElement('div');
+        var processos = document.getElementById('processos');
+        divLista.setAttribute('id', 'lista');
+        processos.append(divLista);
+        xhttp.onreadystatechange = function () {
+            document.getElementById('lista').innerHTML = this.responseText;
+        }
+        xhttp.open('GET', '/processos', true);
+        xhttp.send();
+    });
+</script>
 
 </html>

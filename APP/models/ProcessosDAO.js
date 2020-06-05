@@ -1,55 +1,75 @@
-function processosDAO(connection){
+function ProcessosDAO(connection) {
     this._connection = connection;
 }
 
-processosDAO.prototype.inserirprocesso = function(processo, res){
-    var dados = {
-        operacao: 'inserir',
-        processo: processo,
-        collection: 'processos',
-        callback: function(err, result){
-            res.send('Salvo');
-        }
-    };
-    this._connection(dados);
-};
-
-processosDAO.prototype.pesquisarprocesso = function(processo, res){
-    var dados = {
+ProcessosDAO.prototype.getProcessos = function (res) {
+    var data = {
         operacao: 'pesquisar',
-        processo: processo,
         collection: 'processos',
-        callback: function(err, result){
-            res.send('Encontrado');
+        callback: function (error, result) {
+            if (error)
+                res.send('error');
+            res.render('processos', { processos: result });
         }
     };
-    this._connection(dados);
+    this._connection(data);
+}
+
+ProcessosDAO.prototype.getProcessosCliente = function (res, req) {
+    var cpfCliente = req.session.cpf;
+    var query = { 'cpfCliente': { $eq: cpfCliente } };
+    var data = {
+        operacao: 'pesquisar',
+        dados: query,
+        collection: 'processos',
+        callback: function (error, result) {
+            if (error)
+                res.send('error');
+            else {
+                res.render('processos', { processos: result });
+            }
+        }
+    };
+    this._connection(data);
+}
+
+ProcessosDAO.prototype.inserirProcesso = function (processo) {
+    var data = {
+        operacao: 'inserir',
+        dados: processo,
+        collection: 'processos'
+    };
+    this._connection(data);
 };
 
-processosDAO.prototype.atualizarprocesso = function(processo, res){
-    var dados = {
+ProcessosDAO.prototype.pesquisarProcesso = function (processo) {
+    var data = {
+        operacao: 'pesquisar',
+        dados: processo,
+        collection: 'processos'
+    };
+    this._connection(data);
+};
+
+ProcessosDAO.prototype.atualizarProcesso = function (processo, numeroProcesso) {
+    var data = {
         operacao: 'atualizar',
-        processo: processo,
-        collection: 'processos',
-        callback: function(err, result){
-            res.send('Atualizado');
-        }
+        where: processo.numeroProcesso,
+        set: numeroProcesso,
+        collection: 'processos'
     };
-    this._connection(dados);
+    this._connection(data);
 };
 
-processosDAO.prototype.excluirprocesso = function(processo, res){
-    var dados = {
+ProcessosDAO.prototype.excluirProcesso = function (processo) {
+    var data = {
         operacao: 'remover',
-        processo: processo,
-        collection: 'processos',
-        callback: function(err, result){
-            res.send('Removido');
-        }
+        dados: processo,
+        collection: 'processos'
     };
-    this._connection(dados);
+    this._connection(data);
 };
 
-module.exports = function(){
-    return processosDAO();
+module.exports = function () {
+    return ProcessosDAO;
 }

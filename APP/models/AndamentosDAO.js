@@ -1,55 +1,43 @@
-function andamentosDAO(connection){
+function AndamentosDAO(connection) {
     this._connection = connection;
 }
 
-andamentosDAO.prototype.inserirandamento = function(andamento, res){
-    var dados = {
+AndamentosDAO.prototype.inserirAndamento = function (andamento) {
+    var data = {
         operacao: 'inserir',
-        andamento: andamento,
-        collection: 'andamentos',
-        callback: function(err, result){
-            res.send('Salvo');
-        }
+        dados: andamento,
+        collection: 'andamentos'
     };
-    this._connection(dados);
+    this._connection(data);
 };
 
-andamentosDAO.prototype.pesquisarandamento = function(andamento, res){
-    var dados = {
+AndamentosDAO.prototype.pesquisArandamento = function (andamento) {
+    var data = {
         operacao: 'pesquisar',
-        andamento: andamento,
-        collection: 'andamentos',
-        callback: function(err, result){
-            res.send('Encontrado');
-        }
+        dados: andamento,
+        collection: 'andamentos'
     };
-    this._connection(dados);
+    this._connection(data);
 };
 
-andamentosDAO.prototype.atualizarandamento = function(andamento, res){
-    var dados = {
+AndamentosDAO.prototype.atualizarAndamento = function (andamento) {
+    var data = {
         operacao: 'atualizar',
-        andamento: andamento,
-        collection: 'andamentos',
-        callback: function(err, result){
-            res.send('Atualizado');
-        }
+        dados: andamento,
+        collection: 'andamentos'
     };
-    this._connection(dados);
+    this._connection(data);
 };
 
-andamentosDAO.prototype.excluirandamento = function(andamento, res){
-    var dados = {
+AndamentosDAO.prototype.excluirAndamento = function (andamento) {
+    var data = {
         operacao: 'remover',
-        andamento: andamento,
-        collection: 'andamentos',
-        callback: function(err, result){
-            res.send('Removido');
-        }
+        dados: andamento,
+        collection: 'andamentos'
     };
-    this._connection(dados);
+    this._connection(data);
 };
 
-module.exports = function(){
-    return andamentosDAO();
+module.exports = function () {
+    return AndamentosDAO;
 }

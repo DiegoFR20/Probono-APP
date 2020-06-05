@@ -5,20 +5,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Probono APP</title>
-    <link rel="stylesheet" href="css/style.css">
-
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
+    <header>
+        <h1 id="logo"> PRO BONO </h1>
+        <div id="sair">
+            <button class="btn" type="button" id="sair">
+                Sair
+            </button>
+        </div>
+    </header>
     <div id="container">
-        <header>
-            <div id="logo">
-                PROBONO
-            </div>
-            
-        </header>
+        <% if(validacao.length > 0 ) { %>
+        <div class="error">
+            <strong>Atenção!</strong>
+            <ul>
+                <%for(var i=0; i < validacao.length > 0; i++){%>
+                <li><%=validacao%></li>
+                <% } %>
+            </ul>
+        </div>
+        <%}%>
+        <div id="cadastrarProcesso">
+            <form action="/processo/incluir" method="post">
+                <h3>CADASTRO DE PROCESSO</h3>
+                <label for="descAndamento">DESCRIÇÃO DO ANDAMENTO</label>
+                <textarea placeholder="Descrição do Andamento" value="" id="descAndamento"
+                    name="descAndamento"> </textarea><br>
+                <label for="cpfCliente">CPF DO CLIENTE</label>
+                <input type="text" maxlength="11" id="cpfCliente" name="cpfCliente" placeholder="000000000-00"><br>
+                <input type="text" hidden id="numeroProcesso" name="numeroProcesso" value="">
+                <button class="btn" type="submit" id="cadastrar" value="Cadastrar">
+                    CADASTRAR
+                </button>
+            </form> <br>
+        </div>
+        <div id="processo">
+            <button class="btn" id="btnlista">
+                Lista de Processos
+            </button>
+            <div id="processos" class="processos">
 
+            </div>
+        </div>
     </div>
 </body>
+<script>
+    document.getElementById('sair').addEventListener('click', function () {
+        window.location.href = "/sair";
+    });
+</script>
+<script>
+    var xhttp = new XMLHttpRequest();
+    document.getElementById('btnlista').addEventListener('click', function () {
+        var divLista = document.createElement('div');
+        var processos = document.getElementById('processos');
+        divLista.setAttribute('id', 'lista');
+        processos.append(divLista);
+        xhttp.onreadystatechange = function () {
+            document.getElementById('lista').innerHTML = this.responseText;
+        }
+        xhttp.open('GET', '/processos', true);
+        xhttp.send();
+    });
+</script>
 
 </html>

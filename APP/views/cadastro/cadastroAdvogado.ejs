@@ -5,24 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Probono APP</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
+    <header>
+        <h1 id="logo"> PRO BONO </h1>
+    </header>
     <div id="container">
-        <div id="logo">
-            PROBONO
+        <% if(validacao.length > 0 ) { %>
+        <div class="error">
+            <strong>Atenção!</strong>
+            <ul>
+                <%for(var i=0; i < validacao.length > 0; i++){%>
+                <li><%=validacao[i].msg%></li>
+                <% } %>
+            </ul>
         </div>
+        <%}%>
         <div id="advogadoCadastro">
-            <form action="/api/salvarAdvogado" method="post" id="logar">
-                <input type="text" placeholder="Email" id="email" name="email"><br>
+            <form action="/advogado/incluir" method="post">
+                <h3 class="titulo">CADASTRO DE ADVOGADO</h3>
+                <label>EMAIL</label>
+                <input type="text" placeholder="xxxxx@xxxx.xxx" id="email" name="email"><br>
+                <label>SENHA</label>
                 <input type="password" id="pass" placeholder="Senha" name="password"><br>
-                <button type="submit" id="cadastrar" value="cadastrar">
-                    Cadastrar
+                <button class="btn" type="submit" id="cadastrar" value="cadastrar">
+                    CADASTRAR
                 </button>
-            </form>
+            </form><br>
+            <button class="btn" id="cancelar">
+                CANCELAR
+            </button>
         </div>
     </div>
 </body>
-
+<script>
+    document.getElementById('cancelar').addEventListener('click', function () {
+        window.location.href = "/";
+    })
+</script>
 </html>

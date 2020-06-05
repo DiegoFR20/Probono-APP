@@ -1,55 +1,70 @@
-function clientesDAO(connection){
+var crypto = require('crypto');
+
+function ClientesDAO(connection) {
     this._connection = connection;
 }
 
-clientesDAO.prototype.inserircliente = function(cliente, res){
-    var dados = {
+ClientesDAO.prototype.inserirCliente = function (cliente) {
+    var senhaCriptografada = crypto.createHash('md5').update(cliente.password).digest('hex');
+    cliente.password = senhaCriptografada;
+    var data = {
         operacao: 'inserir',
-        cliente: cliente,
-        collection: 'clientes',
-        callback: function(err, result){
-            res.send('Salvo');
-        }
+        dados: cliente,
+        collection: 'clientes'
     };
-    this._connection(dados);
+    this._connection(data);
 };
 
-clientesDAO.prototype.pesquisarcliente = function(cliente, res){
-    var dados = {
+ClientesDAO.prototype.autenticarCliente = function (cliente, req, res) {
+    var senhaCriptografada = crypto.createHash('md5').update(cliente.password).digest('hex');
+    cliente.password = senhaCriptografada;
+    var data = {
         operacao: 'pesquisar',
-        cliente: cliente,
+        dados: cliente,
         collection: 'clientes',
-        callback: function(err, result){
-            res.send('Encontrado');
+        callback: function (error, result) {
+            if (result[0] != undefined) {
+                req.session.autorizadoCliente = true;
+            }
+
+            if (req.session.autorizadoCliente) {
+                req.session.cpf = cliente.cpf;
+                res.render('home/homeCliente', { validacao: {} });
+            } else {
+                res.render('index', { validacao: {} });
+            }
         }
     };
-    this._connection(dados);
+    this._connection(data);
+}
+
+ClientesDAO.prototype.pesquisarCliente = function (clientes) {
+    var data = {
+        operacao: 'pesquisar',
+        dados: cliente,
+        collection: 'clientes'
+    };
+    this._connection(data);
 };
 
-clientesDAO.prototype.atualizarcliente = function(cliente, res){
-    var dados = {
+ClientesDAO.prototype.atualizarCliente = function (cliente) {
+    var data = {
         operacao: 'atualizar',
-        cliente: cliente,
-        collection: 'clientes',
-        callback: function(err, result){
-            res.send('Atualizado');
-        }
+        dados: cliente,
+        collection: 'clientes'
     };
-    this._connection(dados);
+    this._connection(data);
 };
 
-clientesDAO.prototype.excluircliente = function(cliente, res){
-    var dados = {
+ClientesDAO.prototype.excluirCliente = function (cliente) {
+    var data = {
         operacao: 'remover',
-        cliente: cliente,
-        collection: 'clientes',
-        callback: function(err, result){
-            res.send('Removido');
-        }
+        dados: cliente,
+        collection: 'clientes'
     };
-    this._connection(dados);
+    this._connection(data);
 };
 
-module.exports = function(){
-    return clientesDAO();
+module.exports = function () {
+    return ClientesDAO;
 }

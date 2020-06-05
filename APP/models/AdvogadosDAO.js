@@ -1,55 +1,68 @@
-function AdvogadosDAO(connection){
+var crypto = require('crypto');
+
+function AdvogadosDAO(connection) {
     this._connection = connection;
 }
 
-AdvogadosDAO.prototype.inserirAdvogado = function(advogado, res){
-    var dados = {
+AdvogadosDAO.prototype.inserirAdvogado = function (advogado) {
+    var senhaCriptografada = crypto.createHash('md5').update(advogado.password).digest('hex');
+    advogado.password = senhaCriptografada;
+    var data = {
         operacao: 'inserir',
-        advogado: advogado,
-        collection: 'advogados',
-        callback: function(err, result){
-            res.send('Salvo');
-        }
+        dados: advogado,
+        collection: 'advogados'
     };
-    this._connection(dados);
+    this._connection(data);
 };
 
-AdvogadosDAO.prototype.pesquisarAdvogado = function(advogado, res){
-    var dados = {
+AdvogadosDAO.prototype.autenticarAdvogado = function (advogado, req, res) {
+    var senhaCriptografada = crypto.createHash('md5').update(advogado.password).digest('hex');
+    advogado.password = senhaCriptografada;
+    var data = {
         operacao: 'pesquisar',
-        advogado: advogado,
+        dados: advogado,
         collection: 'advogados',
-        callback: function(err, result){
-            res.send('Encontrado');
+        callback: function (error, result) {
+            if (result[0] != undefined) {
+                req.session.autorizadoAdvogado = true;
+            }
+            if (req.session.autorizadoAdvogado) {
+                res.render('home/homeAdvogado', { validacao: {} });
+            } else {
+                res.render('index', { validacao: {} });
+            }
         }
     };
-    this._connection(dados);
+    this._connection(data);
+}
+
+AdvogadosDAO.prototype.pesquisarAdvogado = function (advogado) {
+    var data = {
+        operacao: 'pesquisar',
+        dados: advogado,
+        collection: 'advogados'
+    };
+    this._connection(data);
 };
 
-AdvogadosDAO.prototype.atualizarAdvogado = function(advogado, res){
-    var dados = {
+AdvogadosDAO.prototype.atualizarAdvogado = function (advogado) {
+    var data = {
         operacao: 'atualizar',
-        advogado: advogado,
-        collection: 'advogados',
-        callback: function(err, result){
-            res.send('Atualizado');
-        }
+        dados: advogado,
+        collection: 'advogados'
     };
-    this._connection(dados);
+    this._connection(data);
 };
 
-AdvogadosDAO.prototype.excluirAdvogado = function(advogado, res){
-    var dados = {
+AdvogadosDAO.prototype.excluirAdvogado = function (advogado) {
+    var data = {
         operacao: 'remover',
-        advogado: advogado,
-        collection: 'advogados',
-        callback: function(err, result){
-            res.send('Removido');
-        }
+        dados: advogado,
+        collection: 'advogados'
     };
-    this._connection(dados);
+    this._connection(data);
 };
 
-module.exports = function(){
-    return AdvogadosDAO();
+module.exports = function () {
+    return AdvogadosDAO;
 }
