@@ -21,9 +21,9 @@
             </button>
         </div>
     </header>
-    <div id="container">
+    <div id="container" style="height: 765px;">
         <div id="infoProcesso">
-            <div id="numeroProcesso">
+            <div id="numeroProcesso" class="border-borderRadius3">
                 <h3>Processo Número: </h3>
                 <span class="border-borderRadius3">
                     <%=numeroProcesso%>
@@ -36,17 +36,27 @@
                     <label for="descAndamento">DESCRIÇÃO DO ANDAMENTO</label>
                     <textarea placeholder="Descrição do Andamento" value="" id="descAndamento"
                         name="descAndamento"></textarea><br>
-                    <label for="traducao">TRADUÇÂO DO ANDAMENTO</label>
-                    <textarea placeholder="Tradução do Andamento" value="" id="tradAndamento"
-                        name="tradAndamento"></textarea><br>
+                    <input type="hidden" value="<%=numeroProcesso%>" id="numeroProcesso" name="numeroProcesso">
                     <button class="btn" type="submit" id="cadastrar" value="Cadastrar">
                         CADASTRAR
                     </button>
                 </form> <br>
+                <form>
+                    <h3>CADASTRO DE TRADUÇÃO</h3>
+                    <label for="descAndamento"></label>
+                    <textarea placeholder="Descrição do Andamento Alvo" value="" id="descAndamento"
+                        name="descAndamento"></textarea>
+                    <label for="traducao"></label>
+                    <textarea placeholder="Tradução do Andamento acima" value="" id="tradAndamento"
+                        name="tradAndamento"></textarea>
+                    <button class="btn" type="submit" id="cadastrarTradução" value="Cadastrar">
+                        CADASTRAR
+                    </button>
+                </form>
             </div>
             <%}%>
         </div>
-        <div id="andamento">
+        <div id="andamento" style="margin-right: 65px;">
             <div id="andamentos" class="andamentos">
                 <%if(andamento !== 'undefined'){%>
             <ul id="lista">

@@ -169,10 +169,14 @@ textarea{
     flex-direction: row;
     align-items: baseline;
     transform: translateX(9px);
+    background-color: #fff;
+    margin-right: 15px;
+    width: 375px;
 }
 
 #numeroProcesso h3{
     margin-right: 20px;
+    padding-left: 15px;
     width: 156px;
 }
 
@@ -194,6 +198,18 @@ textarea{
     overflow: auto;
     height: 500px;
     width: 400px;
+}
+
+#infoProcesso{
+    margin-top: 10px;
+    transform: translateX(65px);
+    padding: 20px;
+    padding-bottom: 45px;
+    border: 1px solid rgb(230, 230, 230);
+    background-color: rgb(240,240,240);
+    border-radius: 8px;
+    height: 675px;
+
 }
 
 .processos, .andamentos{
