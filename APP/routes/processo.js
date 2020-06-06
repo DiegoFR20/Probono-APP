@@ -17,8 +17,8 @@ module.exports = function (application) {
         application.app.controllers.processos.processos(application, req, res);
     })
 
-    application.get('/processo/pesquisar:id', function (req, res) {
-        application.app.controllers.processos.pesquisar(application, req, res);
+    application.get('/processo/pesquisar', function (req, res) {
+        application.app.controllers.andamentos.pesquisar(application, req, res);
     });
 
     application.put('/processo/atualizar:id', function (req, res) {

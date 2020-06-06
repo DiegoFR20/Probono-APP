@@ -9,24 +9,22 @@ ProcessosDAO.prototype.getProcessos = function (res) {
         callback: function (error, result) {
             if (error)
                 res.send('error');
-            res.render('processos', { processos: result });
+            res.render('processos/processos', { processos: result });
         }
     };
     this._connection(data);
 }
 
 ProcessosDAO.prototype.getProcessosCliente = function (res, req) {
-    var cpfCliente = req.session.cpf;
-    var query = { 'cpfCliente': { $eq: cpfCliente } };
     var data = {
         operacao: 'pesquisar',
-        dados: query,
+        dados: { 'cpfCliente': { $eq: req.session.cpf } },
         collection: 'processos',
         callback: function (error, result) {
             if (error)
                 res.send('error');
             else {
-                res.render('processos', { processos: result });
+                res.render('processos/processos', { processos: result });
             }
         }
     };
@@ -42,7 +40,7 @@ ProcessosDAO.prototype.inserirProcesso = function (processo) {
     this._connection(data);
 };
 
-ProcessosDAO.prototype.pesquisarProcesso = function (processo) {
+ProcessosDAO.prototype.pesquisarProcesso = function (processo, res) {
     var data = {
         operacao: 'pesquisar',
         dados: processo,

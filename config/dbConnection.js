@@ -1,13 +1,11 @@
 var mongodb = require('mongodb').MongoClient,
-    objectID = require('mongodb').ObjectID,
-    assert = require('assert');
+    objectID = require('mongodb').ObjectID;
 
 var dbName = 'probono';
 var mongoURL = 'mongodb://localhost:27017';
 
 var connMongoDB = function (data) {
     mongodb.connect(mongoURL, function (err, client) {
-        assert.equal(null, err);
         const db = client.db(dbName);
         query(db, data);
         client.close();

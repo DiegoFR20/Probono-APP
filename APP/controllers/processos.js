@@ -2,6 +2,7 @@ module.exports.incluir = function (application, req, res) {
     var dadosForm = req.body;
     var connection = application.config.dbConnection;
     var ProcessosDAO = new application.app.models.ProcessosDAO(connection);
+    var AndamentosDAO = new application.app.models.AndamentosDAO(connection);
 
     function gerarNumero() {
         var numeroProcesso = Math.floor(Math.random() * 99999999999999999999);
@@ -14,6 +15,7 @@ module.exports.incluir = function (application, req, res) {
     gerarNumero()
 
     ProcessosDAO.inserirProcesso(dadosForm);
+    AndamentosDAO.inserirAndamento(dadosForm.numeroProcesso, dadosForm.descAndamento);
 
     res.render('home/homeAdvogado', { validacao: {} });
 }
@@ -44,13 +46,11 @@ module.exports.atualizar = function (application, req, res) {
 }
 
 module.exports.pesquisar = function (application, req, res) {
-    var dadosForm = req.body;
+    var numeroProcesso = req.query;
     var connection = application.config.dbConnection;
     var ProcessosDAO = new application.app.models.ProcessosDAO(connection);
 
-    ProcessosDAO.pesquisarProcesso(dadosForm);
-
-    res.render('index', { validacao: {} });
+    ProcessosDAO.pesquisarProcesso(numeroProcesso);
 }
 
 module.exports.excluir = function (application, req, res) {

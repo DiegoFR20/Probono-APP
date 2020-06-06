@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Probono APP</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <header>
+        <h1 id="logo">
+            <a href="/">
+                PRO BONO
+            </a>
+        </h1>
+        <div id="sair">
+            <button class="btn" type="button" id="sair">
+                Sair
+            </button>
+        </div>
+    </header>
+    <div id="container">
+        <div>
+            <h3>Processo Número: </h3><%=numeroProcesso%>
+        </div>
+        <div id="andamento">
+            <div id="andamentos" class="andamentos">
+                <%if(andamento !== 'undefined'){%>
+                <ul id="lista">
+                    <%for(var i = 0; i < andamento.length; i++){%>
+                    <li> <h3>Descrição do Andamento: </h3>
+                        <%=andamento[i].descAndamento%>
+                    </li>
+                    <%}%>
+                </ul>
+                <%}%>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    document.getElementById('sair').addEventListener('click', function () {
+        window.location.href = "/sair";
+    });
+</script>
+
+</html>

@@ -20,6 +20,24 @@ header{
     width: fit-content;
 }
 
+a{
+    text-decoration: none;
+}
+
+#logo > a:visited{
+    color: #4b49ac;
+}
+
+a:hover{
+    color: rgb(111, 93, 172);
+    background: rgb(229, 228, 235);
+}
+
+a:active, #logo > a:active{
+    color: rgb(229, 228, 235);
+    background: rgb(111, 93, 172);
+}
+
 #container{
     display: flex;
     width: 1000px;
@@ -135,26 +153,22 @@ textarea{
     transform: translate(90px, 200px);
 }
 
-a{
-    text-decoration: none;
-}
-
 #btnlista{
     margin-left: 51.5px;
 }
 
-#processo{
+#processo, #andamento{
     transform: translateX(45px);
 }
 
-#processos{
+#processos, #andamentos{
     margin-top: 20px;
     overflow: auto;
     height: 400px;
     width: 400px;
 }
 
-.processos{
+.processos, .andamentos{
     padding: 20px;
     text-align: center;
     border: 1px solid rgb(230, 230, 230);

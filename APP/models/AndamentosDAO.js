@@ -2,20 +2,27 @@ function AndamentosDAO(connection) {
     this._connection = connection;
 }
 
-AndamentosDAO.prototype.inserirAndamento = function (andamento) {
+AndamentosDAO.prototype.inserirAndamento = function (numero, desc) {
     var data = {
         operacao: 'inserir',
-        dados: andamento,
+        dados: { numero: numero, desc: desc },
         collection: 'andamentos'
     };
     this._connection(data);
 };
 
-AndamentosDAO.prototype.pesquisArandamento = function (andamento) {
+AndamentosDAO.prototype.pesquisarAndamento = function (andamento, res) {
     var data = {
         operacao: 'pesquisar',
-        dados: andamento,
-        collection: 'andamentos'
+        dados: { 'numeroProcesso': parseInt(andamento.numeroProcesso) },
+        collection: 'processos',
+        callback: function (error, result) {
+            if (error)
+                res.send(error);
+            else {
+                res.render('processos/processo', { numeroProcesso: andamento.numeroProcesso, andamento: result });
+            }
+        }
     };
     this._connection(data);
 };
