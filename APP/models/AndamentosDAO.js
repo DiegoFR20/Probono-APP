@@ -11,7 +11,7 @@ AndamentosDAO.prototype.inserirAndamento = function (numero, desc) {
     this._connection(data);
 };
 
-AndamentosDAO.prototype.pesquisarAndamento = function (andamento, res) {
+AndamentosDAO.prototype.pesquisarAndamento = function (andamento, req, res) {
     var data = {
         operacao: 'pesquisar',
         dados: { 'numeroProcesso': parseInt(andamento.numeroProcesso) },
@@ -20,7 +20,7 @@ AndamentosDAO.prototype.pesquisarAndamento = function (andamento, res) {
             if (error)
                 res.send(error);
             else {
-                res.render('processos/processo', { numeroProcesso: andamento.numeroProcesso, andamento: result });
+                res.render('processos/processo', { numeroProcesso: andamento.numeroProcesso, andamento: result , req: req});
             }
         }
     };

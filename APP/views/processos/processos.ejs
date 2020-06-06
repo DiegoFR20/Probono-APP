@@ -1,11 +1,11 @@
 <ul id="lista">
     <%for(var i = 0; i < processos.length; i++){%>
-    <li>
-        <a href="/processo/pesquisar?numeroProcesso=<%=processos[i].numeroProcesso%>">
-            NUMERO DO PROCESSO: <%=processos[i].numeroProcesso%>
-        </a><br>
-        ANDAMENTO: <%=processos[i].descAndamento%><br>
-        CPF DO CLIENTE: <%=processos[i].cpfCliente%>
-    </li>
-    <% } %>
+<li>
+    <a href="/processo/pesquisar?numeroProcesso=<%=processos[i].numeroProcesso%>">
+        NUMERO DO PROCESSO: <%=processos[i].numeroProcesso%>
+    </a><br>
+    ANDAMENTO: <%=processos[i].descAndamento%><br>
+    CPF DO CLIENTE: <%=processos[i].cpfCliente%>
+</li>
+<% } %>
 </ul>

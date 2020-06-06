@@ -9,10 +9,10 @@ module.exports.incluir = function (application, req, res) {
         if (ProcessosDAO.pesquisarProcesso(numeroProcesso) == undefined) {
             return dadosForm.numeroProcesso = numeroProcesso;
         } else
-            return gerarNumero;
+            return gerarNumero();
     }
 
-    gerarNumero()
+    gerarNumero();
 
     ProcessosDAO.inserirProcesso(dadosForm);
     AndamentosDAO.inserirAndamento(dadosForm.numeroProcesso, dadosForm.descAndamento);

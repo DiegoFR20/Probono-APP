@@ -6,7 +6,7 @@ module.exports = function (application) {
     ], (req, res) => {
         var error = validationResult(req);
         if (!error.isEmpty()) {
-            res.render('cadastro/cadastroAndamento', { validacao: error });
+            res.render('processos/processo:numeroProcesso', { validacao: error });
             return;
         }
         application.app.controllers.andamentos.incluir(application, req, res);

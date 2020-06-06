@@ -24,6 +24,10 @@ a{
     text-decoration: none;
 }
 
+a, a:visited{
+    color: #6765ff;
+}
+
 #logo > a:visited{
     color: #4b49ac;
 }
@@ -41,15 +45,18 @@ a:active, #logo > a:active{
 #container{
     display: flex;
     width: 1000px;
+    height: fit-content;
+    padding-bottom: 20px;
     margin: auto;
     justify-content: center;
+    align-items: center;
     background: rgb(252, 252, 252);
     border: 2px solid rgb(240, 240, 240);
     border-radius: 8px;
     box-shadow: 1px 1px 5px 3px rgb(235, 235, 235);
 }
 
-#cadastrarProcesso, .processos{
+#cadastrarProcesso, .processos, .andamentos{
     padding: 20px;
     background-color: rgb(240, 240, 240);
     border-radius: 8px;
@@ -105,7 +112,7 @@ input:focus, textarea:focus{
 #cadastrarProcesso{
     border: 1px solid rgb(230, 230, 230);
     height: 400px;
-    transform: translate(-12%, 17%);
+    transform: translate(-11%, 4%);
 }
 
 textarea{
@@ -157,14 +164,35 @@ textarea{
     margin-left: 51.5px;
 }
 
-#processo, #andamento{
+#numeroProcesso{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    transform: translateX(9px);
+}
+
+#numeroProcesso h3{
+    margin-right: 20px;
+    width: 156px;
+}
+
+#processo{
     transform: translateX(45px);
 }
 
-#processos, #andamentos{
+#andamento{
+    transform: translateY(25px);
+    margin-left: 144px;
+}
+
+#processos{
     margin-top: 20px;
+    margin-bottom: -25px;
+}
+
+#processos, #andamentos{
     overflow: auto;
-    height: 400px;
+    height: 500px;
     width: 400px;
 }
 
@@ -175,10 +203,24 @@ textarea{
     transform: translateY(-15px);
 }
 
-.processos li{
+.processos li, .andamentos li{
     background-color: #fff;
     margin: 10px;
     border-radius: 5px;
+}
+
+.andamentos li{
+    padding: 20px;
+    text-align: left;
+}
+
+.andamentos h4{
+    margin-top: -5px;
+}
+
+.border-borderRadius3{
+    border: 1px solid rgb(230,230,230);
+    border-radius: 4px;
 }
 
 #lista{

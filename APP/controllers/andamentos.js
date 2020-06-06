@@ -27,7 +27,7 @@ module.exports.pesquisar = function (application, req, res) {
     var connection = application.config.dbConnection;
     var AndamentosDAO = new application.app.models.AndamentosDAO(connection);
 
-    AndamentosDAO.pesquisarAndamento(numeroProcesso, res);
+    AndamentosDAO.pesquisarAndamento(numeroProcesso, req, res);
 }
 
 module.exports.excluir = function (application, req, res) {

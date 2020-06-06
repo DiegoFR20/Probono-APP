@@ -22,22 +22,46 @@
         </div>
     </header>
     <div id="container">
-        <div>
-            <h3>Processo Número: </h3><%=numeroProcesso%>
+        <div id="infoProcesso">
+            <div id="numeroProcesso">
+                <h3>Processo Número: </h3>
+                <span class="border-borderRadius3">
+                    <%=numeroProcesso%>
+                </span>
+            </div>
+            <%if(req.session.autorizadoAdvogado == true){%>
+            <div id="cadastrarAndamento">
+                <form action="/andamento/incluir" method="post">
+                    <h3>CADASTRO DE ANDAMENTO</h3>
+                    <label for="descAndamento">DESCRIÇÃO DO ANDAMENTO</label>
+                    <textarea placeholder="Descrição do Andamento" value="" id="descAndamento"
+                        name="descAndamento"></textarea><br>
+                    <label for="traducao">TRADUÇÂO DO ANDAMENTO</label>
+                    <textarea placeholder="Tradução do Andamento" value="" id="tradAndamento"
+                        name="tradAndamento"></textarea><br>
+                    <button class="btn" type="submit" id="cadastrar" value="Cadastrar">
+                        CADASTRAR
+                    </button>
+                </form> <br>
+            </div>
+            <%}%>
         </div>
         <div id="andamento">
             <div id="andamentos" class="andamentos">
                 <%if(andamento !== 'undefined'){%>
-                <ul id="lista">
-                    <%for(var i = 0; i < andamento.length; i++){%>
-                    <li> <h3>Descrição do Andamento: </h3>
+            <ul id="lista">
+                <%for(var i = 0; i < andamento.length; i++){%>
+                <li>
+                    <h4 class="andamentosDesc">Descrição do Andamento</h4>
+                    <p class="border-borderRadius3">
                         <%=andamento[i].descAndamento%>
-                    </li>
-                    <%}%>
+                    </p>
+                </li>
+                <%}%>
                 </ul>
                 <%}%>
-            </div>
         </div>
+    </div>
     </div>
 </body>
 <script>
