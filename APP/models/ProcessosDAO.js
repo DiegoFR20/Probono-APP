@@ -2,14 +2,14 @@ function ProcessosDAO(connection) {
     this._connection = connection;
 }
 
-ProcessosDAO.prototype.getProcessos = function (res) {
+ProcessosDAO.prototype.getProcessos = function (res, req) {
     var data = {
         operacao: 'pesquisar',
         collection: 'processos',
         callback: function (error, result) {
             if (error)
                 res.send('error');
-            res.render('processos/processos', { processos: result });
+            res.render('processos/processos', { processos: result, req: req });
         }
     };
     this._connection(data);
@@ -24,7 +24,7 @@ ProcessosDAO.prototype.getProcessosCliente = function (res, req) {
             if (error)
                 res.send('error');
             else {
-                res.render('processos/processos', { processos: result });
+                res.render('processos/processos', { processos: result, req: req });
             }
         }
     };

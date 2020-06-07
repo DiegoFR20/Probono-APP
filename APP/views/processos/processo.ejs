@@ -41,7 +41,7 @@
                         CADASTRAR
                     </button>
                 </form> <br>
-                <form>
+                <form action="/traducao/incluir" method="post">
                     <h3>CADASTRO DE TRADUÇÃO</h3>
                     <label for="descAndamento"></label>
                     <textarea placeholder="Descrição do Andamento Alvo" value="" id="descAndamento"
@@ -53,6 +53,16 @@
                         CADASTRAR
                     </button>
                 </form>
+            </div>
+            <%}%>
+            <%if(req.session.autorizadoCliente == true){%>
+            <div id="traducao">
+                <textarea placeholder="Texto a ser traduzido" id="areaTraducao" value=""></textarea>
+                <button class="btn" id="btnTraduzir">
+                    Traduzir
+                </button>
+                <textarea style="margin-left:23px;" placeholder="O texto traduzido irá aparecer aqui" id="areaTraduzida"
+                    value=""></textarea>
             </div>
             <%}%>
         </div>
@@ -77,6 +87,21 @@
 <script>
     document.getElementById('sair').addEventListener('click', function () {
         window.location.href = "/sair";
+    });
+</script>
+<script>
+    var xhttp = new XMLHttpRequest();
+    document.getElementById('btnTraduzir').addEventListener('click', function () {
+        var traducao = document.getElementById('traducao');
+        var areaTraducao = document.getElementById('areaTraducao').value;
+        var areaTraduzida = document.getElementById('areaTraduzida');
+        traducao.append(areaTraduzida);
+        xhttp.onreadystatechange = function () {
+            document.getElementById('areaTraduzida').innerHTML = this.responseText;
+        }
+        xhttp.open('GET', '/traducao?areaTraducao=' + areaTraducao, true);
+        xhttp.send();
+
     });
 </script>
 

@@ -12,19 +12,41 @@ AndamentosDAO.prototype.inserirAndamento = function (numeroProcesso, descAndamen
     this._connection(data);
 };
 
+AndamentosDAO.prototype.inserirTraducao = function (traducao) {
+    var data = {
+        operacao: 'inserir',
+        dados: traducao,
+        collection: 'traducoes'
+    };
+    this._connection(data);
+};
+
+AndamentosDAO.prototype.pesquisarTraducao = function (descAndamento, req, res) {
+    var data = {
+        operacao: 'pesquisar',
+        dados: { 'descAndamento': descAndamento },
+        collection: 'traducoes',
+        callback: function (error, result) {
+            var trad = JSON.stringify(result[0].tradAndamento);
+            var traducao = trad.split('"').join('');
+            res.send(traducao);
+        }
+    };
+    this._connection(data);
+};
+
 AndamentosDAO.prototype.pesquisarAndamento = function (andamento, req, res) {
     var numeroProcesso = parseInt(andamento.numeroProcesso);
-    console.log({'numeroProcesso': numeroProcesso});
     var data = {
         operacao: 'pesquisar',
         dados: { 'numeroProcesso': numeroProcesso },
         collection: 'andamentos',
         callback: function (error, result) {
-            if (error)
+            if (error) {
                 res.send(error);
+            }
             else {
-                console.log(result);
-                res.render('processos/processo', { numeroProcesso: numeroProcesso, andamento: result, req: req });
+                res.render('processos/processo', { numeroProcesso: numeroProcesso, andamento: result, req: req, traducao: {} });
             }
         }
     };

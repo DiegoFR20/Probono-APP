@@ -28,7 +28,7 @@ module.exports.processos = function (application, req, res) {
         ProcessosDAO.getProcessosCliente(res, req);
     }
     else if (req.session.autorizadoAdvogado == true) {
-        ProcessosDAO.getProcessos(res);
+        ProcessosDAO.getProcessos(res, req);
     } else {
         res.send("Usuario precisa logar!");
         return;
