@@ -4,9 +4,25 @@ function AndamentosDAO(connection) {
 
 AndamentosDAO.prototype.inserirAndamento = function (numeroProcesso, descAndamento) {
     var numero = parseInt(numeroProcesso);
+    var ano = new Date().getFullYear();
+    var mes = new Date().getMonth();
+    var dia = new Date().getDay();
+    var hora = new Date().getHours();
+    var minuto = new Date().getMinutes();
+    var segundo = new Date().getSeconds();
+
     var data = {
         operacao: 'inserir',
-        dados: { numeroProcesso: numero, descAndamento: descAndamento },
+        dados: {
+            numeroProcesso: numero, descAndamento: descAndamento, date: {
+                ano: ano,
+                mes: mes,
+                dia: dia,
+                hora: hora,
+                minuto: minuto,
+                segundo: segundo,
+            }
+        },
         collection: 'andamentos'
     };
     this._connection(data);

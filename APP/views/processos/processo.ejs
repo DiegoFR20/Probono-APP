@@ -74,7 +74,8 @@
                 <li>
                     <h4 class="andamentosDesc">Descrição do Andamento</h4>
                     <p class="border-borderRadius3">
-                        <%=andamento[i].descAndamento%>
+                        <%=andamento[i].descAndamento%>,
+                        <%=andamento[i].date.dia%>/<%=andamento[i].date.mes%>/<%=andamento[i].date.ano%> - <%=andamento[i].date.minuto%>:<%=andamento[i].date.hora%>
                     </p>
                 </li>
                 <%}%>
