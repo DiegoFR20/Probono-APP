@@ -52,7 +52,8 @@ module.exports.pesquisarTraducao = function (application, req, res) {
     var connection = application.config.dbConnection;
     var AndamentosDAO = new application.app.models.AndamentosDAO(connection);
 
-    AndamentosDAO.pesquisarTraducao(descAndamento, req, res);
+    AndamentosDAO.pesquisarTraducao(descAndamento, res);
+  //  AndamentosDAO.pesquisarDataAndamento(descAndamento, res);
 }
 
 module.exports.excluir = function (application, req, res) {

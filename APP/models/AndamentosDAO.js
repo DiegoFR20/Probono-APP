@@ -37,15 +37,37 @@ AndamentosDAO.prototype.inserirTraducao = function (traducao) {
     this._connection(data);
 };
 
-AndamentosDAO.prototype.pesquisarTraducao = function (descAndamento, req, res) {
+AndamentosDAO.prototype.pesquisarTraducao = function (descAndamento, res) {
     var data = {
         operacao: 'pesquisar',
         dados: { 'descAndamento': descAndamento },
         collection: 'traducoes',
         callback: function (error, result) {
+            if(result){
             var trad = JSON.stringify(result[0].tradAndamento);
             var traducao = trad.split('"').join('');
             res.send(traducao);
+            }
+            if(error){
+                res.send('Não encontrada tradução.');
+            }
+        }
+    };
+    this._connection(data);
+};
+
+AndamentosDAO.prototype.pesquisarDataAndamento = function (descAndamento, res) {
+    var data = {
+        operacao: 'pesquisar',
+        dados: { 'descAndamento': descAndamento },
+        collection: 'andamentos',
+        callback: function (error, result) {
+            if (error) {
+                res.send(error);
+            }
+            else {
+                res.send('Ela será realizada no dia ' + result.date.dia + '/' + result[0].date.mes + '/' + result[0].date.dia + ' às ' + result[0].date.hora + ':' + result[0].date.minuto);
+            }
         }
     };
     this._connection(data);
