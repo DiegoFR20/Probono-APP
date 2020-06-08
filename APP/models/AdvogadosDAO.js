@@ -23,7 +23,7 @@ AdvogadosDAO.prototype.autenticarAdvogado = function (advogado, req, res) {
         dados: advogado,
         collection: 'advogados',
         callback: function (error, result) {
-            if (result[0] != undefined) {
+            if (result != undefined) {
                 req.session.autorizadoAdvogado = true;
             }
             if (req.session.autorizadoAdvogado) {

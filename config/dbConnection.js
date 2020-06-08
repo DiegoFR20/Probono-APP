@@ -1,11 +1,11 @@
-var mongodb = require('mongodb').MongoClient,
+var MongoClient = require('mongodb').MongoClient,
     objectID = require('mongodb').ObjectID;
 
 var dbName = 'probono';
-var mongoURL = 'mongodb://localhost:27017';
+var mongoURL = 'mongodb+srv://DiegoFR:Freire15.@cluster0-wlpz2.mongodb.net/probono?retryWrites=true&w=majority';
 
 var connMongoDB = function (data) {
-    mongodb.connect(mongoURL, function (err, client) {
+    MongoClient.connect(mongoURL, { useNewUrlParser: true }, function (err, client) {
         const db = client.db(dbName);
         query(db, data);
         client.close();
