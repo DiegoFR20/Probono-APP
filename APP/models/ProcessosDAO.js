@@ -40,7 +40,7 @@ ProcessosDAO.prototype.inserirProcesso = function (processo) {
     this._connection(data);
 };
 
-ProcessosDAO.prototype.pesquisarProcesso = function (processo, res) {
+ProcessosDAO.prototype.pesquisarProcesso = function (processo) {
     var data = {
         operacao: 'pesquisar',
         dados: processo,

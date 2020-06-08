@@ -45,6 +45,8 @@
                         CADASTRAR
                     </button>
                 </form> <br>
+            </div>
+            <div id="cadastroTraducao">
                 <form action="/traducao/incluir" method="post">
                     <h3>CADASTRO DE TRADUÇÃO</h3>
                     <label for="descAndamento"></label>
@@ -79,8 +81,8 @@
                     <h4 class="andamentosDesc">Descrição do Andamento</h4>
                     <p class="border-borderRadius3">
                         <%=andamento[i].descAndamento%> No dia
-                        <%=andamento[i].date%> às 
-                        <%=andamento[i].time%>
+                        <%=andamento[i].date%> às
+                        <%=andamento[i].time%>.
                     </p>
                 </li>
                 <%}%>

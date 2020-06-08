@@ -34,8 +34,7 @@ AndamentosDAO.prototype.pesquisarTraducao = function (descAndamento, res) {
                 var trad = JSON.stringify(result[0].tradAndamento);
                 var traducao = trad.split('"').join('');
                 res.send(traducao);
-            }
-            if (error) {
+            }else if(result[0].tradAndamento == undefined){
                 res.send('Não encontrada tradução.');
             }
         }

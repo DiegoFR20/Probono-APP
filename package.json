@@ -1,14 +1,18 @@
 {
   "name": "probono-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "Aplicação de tradução de andamentos de processos judiciais.",
   "main": "app.js",
   "scripts": {
+    "build": "nodemon app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DiegoFR20/Probono-app.git"
+  },
+  "engines": {
+    "node": "12.x"
   },
   "author": "Diego Freire",
   "license": "ISC",

@@ -15,12 +15,16 @@ module.exports.incluir = function (application, req, res) {
 
 module.exports.incluirTraducao = function (application, req, res) {
     var dadosForm = req.body;
+    var numeroProcesso = req.query;
     var connection = application.config.dbConnection;
     var AndamentosDAO = new application.app.models.AndamentosDAO(connection);
 
-    AndamentosDAO.inserirTraducao(dadosForm);
-
-    res.render('home/homeAdvogado', { validacao: {} });
+    if (dadosForm.descAndamento !== undefined && dadosForm.tradAndamento !== undefined) {
+        AndamentosDAO.inserirTraducao(dadosForm);
+        res.render('home/homeAdvogado', { validacao: {}, numeroProcesso: numeroProcesso });
+    } else {
+        res.send("Um ou mais campos faltando");
+    }
 }
 
 module.exports.atualizar = function (application, req, res) {

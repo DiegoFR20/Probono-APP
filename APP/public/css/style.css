@@ -62,6 +62,10 @@ a:active, #logo > a:active{
     border-radius: 8px;
 }
 
+#cadastroTraducao{
+    transform: translateY(-50px);
+}
+
 #cadastro{
     display: flex;
     flex-direction: column;
@@ -121,7 +125,7 @@ textarea{
     width: 337px;
     border-radius: 7px;
     resize: none;
-    height: 80px;
+    height: 70px;
 }
 
 .btn{
