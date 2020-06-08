@@ -6,8 +6,8 @@ var mongoURL = 'mongodb+srv://DiegoFR:Freire15.@cluster0-wlpz2.mongodb.net/probo
 
 var connMongoDB = function (data) {
     MongoClient.connect(mongoURL, { useNewUrlParser: true }, function (err, client) {
-        const db = client.db(dbName);
-        query(db, data);
+        const dB = client.db(dbName);
+        query(dB, data);
         client.close();
     });
 }

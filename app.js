@@ -1,5 +1,8 @@
 var app = require('./config/server');
 
-app.listen(80, function(){
+const PORT = 3000;
+const HOST = '0.0.0.0';
+
+app.listen(PORT, HOST, function(){
     console.log("Servidor ON");
 });

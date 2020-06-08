@@ -23,7 +23,7 @@ ClientesDAO.prototype.autenticarCliente = function (cliente, req, res) {
         dados: cliente,
         collection: 'clientes',
         callback: function (error, result) {
-            if (result != undefined) {
+            if (result != undefined && result != "") {
                 req.session.autorizadoCliente = true;
             }
 
