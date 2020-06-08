@@ -2,26 +2,13 @@ function AndamentosDAO(connection) {
     this._connection = connection;
 }
 
-AndamentosDAO.prototype.inserirAndamento = function (numeroProcesso, descAndamento) {
+AndamentosDAO.prototype.inserirAndamento = function (numeroProcesso, descAndamento, date, time) {
     var numero = parseInt(numeroProcesso);
-    var ano = new Date().getFullYear();
-    var mes = new Date().getMonth();
-    var dia = new Date().getDay();
-    var hora = new Date().getHours();
-    var minuto = new Date().getMinutes();
-    var segundo = new Date().getSeconds();
 
     var data = {
         operacao: 'inserir',
         dados: {
-            numeroProcesso: numero, descAndamento: descAndamento, date: {
-                ano: ano,
-                mes: mes,
-                dia: dia,
-                hora: hora,
-                minuto: minuto,
-                segundo: segundo,
-            }
+            numeroProcesso: numero, descAndamento: descAndamento, date: date, time: time
         },
         collection: 'andamentos'
     };
@@ -43,12 +30,12 @@ AndamentosDAO.prototype.pesquisarTraducao = function (descAndamento, res) {
         dados: { 'descAndamento': descAndamento },
         collection: 'traducoes',
         callback: function (error, result) {
-            if(result){
-            var trad = JSON.stringify(result[0].tradAndamento);
-            var traducao = trad.split('"').join('');
-            res.send(traducao);
+            if (result) {
+                var trad = JSON.stringify(result[0].tradAndamento);
+                var traducao = trad.split('"').join('');
+                res.send(traducao);
             }
-            if(error){
+            if (error) {
                 res.send('Não encontrada tradução.');
             }
         }

@@ -37,6 +37,10 @@
                     <textarea placeholder="Descrição do Andamento" value="" id="descAndamento"
                         name="descAndamento"></textarea><br>
                     <input type="hidden" value="<%=numeroProcesso%>" id="numeroProcesso" name="numeroProcesso">
+                    <label for="date">Data e Horário</label>
+                    <input type="date" id="date" name="date">
+                    <label for="time"></label>
+                    <input type="time" id="time" name="time">
                     <button class="btn" type="submit" id="cadastrar" value="Cadastrar">
                         CADASTRAR
                     </button>
@@ -74,8 +78,9 @@
                 <li>
                     <h4 class="andamentosDesc">Descrição do Andamento</h4>
                     <p class="border-borderRadius3">
-                        <%=andamento[i].descAndamento%>, no dia
-                        <%=andamento[i].date.dia%>/<%=andamento[i].date.mes%>/<%=andamento[i].date.ano%> - <%=andamento[i].date.hora%>h:<%=andamento[i].date.minuto%>m
+                        <%=andamento[i].descAndamento%> No dia
+                        <%=andamento[i].date%> às 
+                        <%=andamento[i].time%>
                     </p>
                 </li>
                 <%}%>

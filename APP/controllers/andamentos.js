@@ -8,7 +8,7 @@ module.exports.incluir = function (application, req, res) {
     var AndamentosDAO = new application.app.models.AndamentosDAO(connection);
     dadosForm.numeroProcesso = parseInt(dadosForm.numeroProcesso);
 
-    AndamentosDAO.inserirAndamento(dadosForm.numeroProcesso, dadosForm.descAndamento);
+    AndamentosDAO.inserirAndamento(dadosForm.numeroProcesso, dadosForm.descAndamento, dadosForm.date, dadosForm.time);
 
     res.render('home/homeAdvogado', { validacao: {} });
 }
@@ -53,7 +53,7 @@ module.exports.pesquisarTraducao = function (application, req, res) {
     var AndamentosDAO = new application.app.models.AndamentosDAO(connection);
 
     AndamentosDAO.pesquisarTraducao(descAndamento, res);
-  //  AndamentosDAO.pesquisarDataAndamento(descAndamento, res);
+    //  AndamentosDAO.pesquisarDataAndamento(descAndamento, res);
 }
 
 module.exports.excluir = function (application, req, res) {
